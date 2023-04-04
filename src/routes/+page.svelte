@@ -87,10 +87,35 @@
   }
 </script>
 
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+/>
+
 <div class="container is-fluid is-family-primary">
   <form class="box is-size-6">
-    <!-- <div class="title is-4">駅名検索</div> -->
-    <div class="field">
+    <div class="field input-group">
+      <input
+        class="input is-primary is-half"
+        name="search"
+        type="text"
+        placeholder="検索文字列を入力してください"
+        bind:value={searchText}
+      />
+      <span
+        class="icon is-small is-right icon-clear"
+        on:click={() => {
+          searchText = "";
+        }}
+        on:keypress={() => {
+          searchText = "";
+        }}
+      >
+        <i class="fas fa-times" />
+      </span>
+      <button class="button is-primary" on:click={search}>検索</button>
+    </div>
+    <!-- <div class="field">
       <input
         class="input is-primary is-half"
         type="text"
@@ -102,7 +127,7 @@
       {#if searchText}
         <button class="button" on:click={clearInput}>Clear</button>
       {/if}
-    </div>
+    </div> -->
     <div class="field">
       検索方法
       <input
@@ -135,9 +160,6 @@
       <input type="radio" bind:group={itemType} name="item" value={1} />駅名
       <input type="radio" bind:group={itemType} name="item" value={2} />かな
     </div>
-    <!-- <div>
-      <button class="button is-primary" on:click={search}>検索</button>
-    </div> -->
   </form>
 
   <!-- <form class="box is-size-6"> -->
@@ -172,17 +194,4 @@
       </table>
     </ul>
   </form>
-
-  <!-- <form class="box is-size-7">
-    <div>
-      駅名検索 ver.2.0 (c)2023 jae02546<br />
-      <a
-        href="https://jae02546.github.io/station_search/"
-        target="_blank"
-        rel="noopener noreferrer">路線データ、及び免責事項について</a
-      >
-      <br />
-      Twitter @jae02546 || @salted_salmon<br />
-    </div>
-  </form> -->
 </div>

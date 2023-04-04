@@ -1,7 +1,20 @@
 .is-half {
     width: 50%;
   }
-
-// .hero {
-//   height: 100px;
-// }
+.input-group {
+  position: relative;
+  width: 100%;
+}
+.input-group .icon-clear {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  padding-right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #a5a5a5;
+  transition: color 0.3s ease;
+}
+.input-group .icon-clear:hover {
+  color: #363636;
+}
