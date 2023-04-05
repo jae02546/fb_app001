@@ -81,10 +81,6 @@
   });
 
   onDestroy(() => {});
-
-  function clearInput() {
-    searchText = "";
-  }
 </script>
 
 <link
@@ -96,7 +92,7 @@
   <form class="box is-size-6">
     <div class="field input-group">
       <input
-        class="input is-primary is-half"
+        class="input is-primary"
         name="search"
         type="text"
         placeholder="検索文字列を入力してください"
@@ -115,19 +111,6 @@
       </span>
       <button class="button is-primary" on:click={search}>検索</button>
     </div>
-    <!-- <div class="field">
-      <input
-        class="input is-primary is-half"
-        type="text"
-        placeholder="検索文字列を入力してください"
-        name="search"
-        bind:value={searchText}
-      />
-      <button class="button is-primary" on:click={search}>検索</button>
-      {#if searchText}
-        <button class="button" on:click={clearInput}>Clear</button>
-      {/if}
-    </div> -->
     <div class="field">
       検索方法
       <input
@@ -162,7 +145,6 @@
     </div>
   </form>
 
-  <!-- <form class="box is-size-6"> -->
   <form class="box {tableFontSize}">
     <ul>
       <p>{searchInfo}</p>

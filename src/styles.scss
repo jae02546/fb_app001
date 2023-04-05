@@ -1,14 +1,12 @@
-.is-half {
-    width: 50%;
-  }
 .input-group {
   position: relative;
-  width: 100%;
+  display: flex;
+  max-width: 600px;
 }
 .input-group .icon-clear {
   position: absolute;
   top: 50%;
-  right: 50%;
+  right: 65px;
   padding-right: 20px;
   transform: translateY(-50%);
   cursor: pointer;
