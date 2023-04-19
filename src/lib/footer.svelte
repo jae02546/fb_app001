@@ -3,7 +3,7 @@
 <footer class="footer is-size-7">
   <!-- <form class="box is-size-7"> -->
     <div class="content has-text-centered ">
-      駅名検索 ver.2.1 (c)2023 jae02546<br />
+      駅名検索 ver.2.2 (c)2023 jae02546<br />
       <a
         href="https://jae02546.github.io/station_search/"
         target="_blank"

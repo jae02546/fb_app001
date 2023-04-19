@@ -12,6 +12,7 @@
   let searchText = ""; //検索文字列
   let matchType = 1; //検索方法
   let itemType = 1; //検索項目
+  let lenType = 0; //文字数 0:指定なし 1-9:文字数 10:10文字以上
   let searchInfo = ""; //検索結果（件数、時間、日時）
 
   const makeMap = async () => {
@@ -26,7 +27,14 @@
   let no = 1;
   const search = async () => {
     const startTime = new Date();
-    let foo = searchSta(lineMap, staMap, searchText, matchType, itemType);
+    let foo = searchSta(
+      lineMap,
+      staMap,
+      searchText,
+      matchType,
+      itemType,
+      lenType
+    );
     tableFontSize = window.innerWidth <= 1080 ? "is-size-7" : "is-size-6";
     tableData = [];
     no = 1;
@@ -59,13 +67,21 @@
     tableData = tableData;
 
     //検索結果（件数、時間、日時）
-    if (searchText !== "") {
+    // if (searchText !== "") {
+    //   const count = foo?.size === undefined ? 0 : foo?.size;
+    //   const endTime = new Date();
+    //   const runTime = (endTime.getTime() - startTime.getTime()) / 1000;
+    //   searchInfo = makeInfo(count, runTime, endTime);
+    // } else {
+    //   searchInfo = "検索文字列を入力してください";
+    // }
+    if (searchText == "" && lenType == 0) {
+      searchInfo = "検索文字列、または文字数を指定してください。";
+    } else {
       const count = foo?.size === undefined ? 0 : foo?.size;
       const endTime = new Date();
       const runTime = (endTime.getTime() - startTime.getTime()) / 1000;
       searchInfo = makeInfo(count, runTime, endTime);
-    } else {
-      searchInfo = "検索文字列を入力してください";
     }
     searchInfo = searchInfo;
   };
@@ -92,7 +108,7 @@
   <form class="box is-size-6">
     <div class="field input-group">
       <input
-        class="input is-primary"
+        class="input is-primary mr-1"
         name="search"
         type="text"
         placeholder="検索文字列を入力してください"
@@ -111,37 +127,64 @@
       </span>
       <button class="button is-primary" on:click={search}>検索</button>
     </div>
-    <div class="field">
-      検索方法
-      <input
-        type="radio"
-        bind:group={matchType}
-        name="match"
-        value={1}
-      />部分一致
-      <input
-        type="radio"
-        bind:group={matchType}
-        name="match"
-        value={2}
-      />前方一致
-      <input
-        type="radio"
-        bind:group={matchType}
-        name="match"
-        value={3}
-      />後方一致
-      <input
-        type="radio"
-        bind:group={matchType}
-        name="match"
-        value={4}
-      />完全一致
+
+    <div class="field is-flex is-align-items-center">
+      <label class="custom-label mr-3" for="len-select">検索方法</label>
+      <div class="control mr-3">
+        <input
+          type="radio"
+          bind:group={matchType}
+          name="match"
+          value={1}
+        />部分一致
+        <input
+          type="radio"
+          bind:group={matchType}
+          name="match"
+          value={2}
+        />前方一致
+        <input
+          type="radio"
+          bind:group={matchType}
+          name="match"
+          value={3}
+        />後方一致
+        <input
+          type="radio"
+          bind:group={matchType}
+          name="match"
+          value={4}
+        />完全一致
+      </div>
     </div>
-    <div class="field">
-      検索項目
-      <input type="radio" bind:group={itemType} name="item" value={1} />駅名
-      <input type="radio" bind:group={itemType} name="item" value={2} />かな
+
+    <div class="field is-flex is-align-items-center">
+      <label class="custom-label mr-3" for="len-select">検索項目</label>
+      <div class="control mr-3">
+        <input type="radio" bind:group={itemType} name="item" value={1} />駅名
+        <input type="radio" bind:group={itemType} name="item" value={2} />かな
+      </div>
+    </div>
+
+    <div class="field is-flex is-align-items-center">
+      <label class="custom-label mr-3" for="len-select">文字数</label>
+      <div class="control">
+        <div class="select is-primary">
+          <select bind:value={lenType} name="len" id="len-select">
+            <option value={0}>指定なし</option>
+            <option value={1}>1文字</option>
+            <option value={2}>2文字</option>
+            <option value={3}>3文字</option>
+            <option value={4}>4文字</option>
+            <option value={5}>5文字</option>
+            <option value={6}>6文字</option>
+            <option value={7}>7文字</option>
+            <option value={8}>8文字</option>
+            <option value={9}>9文字</option>
+            <option value={10}>10文字以上</option>
+          </select>
+        </div>
+      </div>
     </div>
   </form>
 
